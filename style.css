@@ -1,1 +1,24 @@
+html {
+  font-family: "Monoton", cursive;
+}
 
+.btn {
+  font-family: "Monoton", cursive;
+  border-radius: 8px;
+  /* padding: 10px 20px; */
+}
+
+#btnContainer {
+  display: grid;
+  grid-template-columns: 70px 70px;
+  grid-template-rows: auto;
+}
+
+#resultsDiv {
+  border: 1px solid black;
+  border-radius: 8px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin-top: 40px;
+}
