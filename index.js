@@ -33,39 +33,79 @@ function operate(num1, num2, operator) {
   } else if (operator == "/") {
     return divide(num1, num2);
   }
-  console.log("operate function called");
+  console.log(operate);
 }
 
-console.log(operate(1, 2, "*"));
+// console.log(operate(1, 2, "*"));
+
+// need to know current operator
+let enteredNumber = "";
+let currentOperator = null;
+
+let num1 = 0;
+let num2 = 0;
 
 // resultsDiv displays numbers and operator as they are entered
 document.querySelector("#btnContainer").addEventListener("click", (event) => {
   let target = event.target;
-  if (target.matches(".btn.both")) {
+
+  if (target.matches(".btn.num")) {
     let value = target.innerHTML;
+    enteredNumber += value;
+    document.querySelector("#output").value = enteredNumber;
+    console.log(enteredNumber);
+  } else if (target.matches(".btn.op")) {
+    let n = parseInt(enteredNumber);
+    if (currentOperator == null) {
+      num1 = n;
+    } else {
+      num2 = n;
+    }
+    enteredNumber = 0;
 
-    document.querySelector("#output").value += value;
+    currentOperator = target.innerHTML;
+    document.querySelector("#output").value = currentOperator;
+    console.log(currentOperator);
   }
+  console.log({ num1, num2, enteredNumber });
 });
-// const resultsDiv = document.querySelector("#resultsDiv");
-// resultsDiv.textContent = "num1 ... op ... num2 ..."
 
-// clicking number button stores value in variable num1
+// // clicking number button stores value in variable num1
+// document.querySelector("#btnContainer").addEventListener("click", (event) => {
+//   let firstClicked = event.target;
+//   if (firstClicked.matches(".btn.num")) {
+//     let num1 = firstClicked.innerHTML;
+//     console.log(num1);
+//   }
+// });
+// // const firstClicked = document.querySelector("btnContainer");
+// // firstClicked.addEventListener("click", save as num1);
 
-// const firstClicked = document.querySelector("btn");
-// firstClicked.addEventListener("click", save as num1);
+// // // clicking operator button stores choice in variable op
+// document.querySelector("#btnContainer").addEventListener("click", (event) => {
+//   let operatorClicked = event.target;
+//   if (operatorClicked.matches(".btn.op")) {
+//     let op = operatorClicked.innerHTML;
+//     console.log(op);
+//   }
+// });
+// // const op = document.querySelector("btn");
+// // op.addEventListener("click", save as op);
 
-// // clicking operator button stores choice in variable op
-// const op = document.querySelector("btn");
-// op.addEventListener("click", save as op);
-
-// // clicking next number button stores value in variable num2
+// // // clicking next number button stores value in variable num2
+// document.querySelector("#btnContainer").addEventListener("click", (event) => {
+//   let secondClicked = event.target;
+//   if (secondClicked.matches(".btn.num")) {
+//     let num2 = secondClicked.innerHTML;
+//     console.log(num2);
+//   }
+// });
 // const secondClicked = document.querySelector("btn");
 // secondClicked.addEventListener("click", save as num2);
 
-// // clicking = calls operate() on the input values
-// const equalBtn = document.querySelector("#equalBtn");
-// equalBtn.addEventListener("click", operate);
+// clicking = calls operate() on the input values
+const equalBtn = document.querySelector("#equalBtn");
+equalBtn.addEventListener("click", operate);
 
 // // update to display solution after = is pressed
 // resultsDiv.textContent = "solution"
