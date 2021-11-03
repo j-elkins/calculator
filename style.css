@@ -2,10 +2,20 @@ html {
   font-family: "Monoton", cursive;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
 .btn {
   font-family: "Monoton", cursive;
   border-radius: 8px;
   /* padding: 10px 20px; */
+}
+
+.btn.op {
+  background-color: rgb(181, 181, 181);
 }
 
 #btnContainer {
@@ -18,7 +28,13 @@ html {
   border: 1px solid black;
   border-radius: 8px;
   width: 150px;
-  height: 150px;
-  text-align: center;
+  height: 60px;
   margin-top: 40px;
+  padding: 5px;
+}
+
+#output {
+  font-family: "Monoton", cursive;
+  border: none;
+  width: 100px;
 }
