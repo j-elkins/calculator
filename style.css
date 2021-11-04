@@ -8,6 +8,12 @@ body {
   /* align-items: center; */
 }
 
+#btnContainer {
+  display: grid;
+  grid-template-columns: 70px 70px;
+  grid-template-rows: auto;
+}
+
 .btn {
   font-family: "Monoton", cursive;
   border-radius: 8px;
@@ -18,10 +24,9 @@ body {
   background-color: rgb(181, 181, 181);
 }
 
-#btnContainer {
-  display: grid;
-  grid-template-columns: 70px 70px;
-  grid-template-rows: auto;
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 #resultsDiv {
