@@ -64,34 +64,35 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
     document.querySelector("#output").value = enteredNumber;
     console.log(enteredNumber);
   } else if (target.matches(".btn.op")) {
-    let n = parseInt(enteredNumber);
-    if (currentOperator == null) {
-      n1 = n;
-    } else {
-      if (n === 0) {
-        console.log("ERROR"); //console.log works but #output value incorrect..
-        document.querySelector("#output").value = "ERROR";
+    if (enteredNumber !== "") {
+      let n = parseInt(enteredNumber);
+      if (currentOperator == null) {
+        n1 = n;
       } else {
         n2 = n;
-      }
 
-      doTheMath();
+        doTheMath();
+      }
     }
+
     enteredNumber = "";
 
     currentOperator = target.innerHTML;
+    if (currentOperator === "=") {
+      currentOperator = null;
+    }
 
     console.log(currentOperator);
-
-    // clicking = calls operate() on the entered values
-    // const equalBtn = document.querySelector("#equalBtn");
-    // equalBtn.addEventListener("click", operate(num1, num2, op));
 
     // clicking another operator also calls operate()
     // displays solution, and puts solution into num1 to be used in next calculation
   }
   console.log({ n1, n2, currentOperator, enteredNumber });
 });
+
+// clicking = calls operate() on the entered values
+// const equalBtn = document.querySelector("#equalBtn");
+// equalBtn.addEventListener("click", operate(num1, num2, op));
 
 // add clear button that clears resultsDiv & all data
 // reload the page? or is there better solution?
