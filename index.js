@@ -1,27 +1,32 @@
-// create simple functions for adding, subtracting, multiplying, dividing
+// create basic functions for adding, subtracting, multiplying, dividing
+// will need to change console.log to display solution in resultsDiv
 
 function add(num1, num2) {
   let result = num1 + num2;
-  return result;
+  document.querySelector("#output").value = result;
+  console.log(result);
 }
 
 function subtract(num1, num2) {
   let result = num1 - num2;
-  return result;
+  document.querySelector("#output").value = result;
+  console.log(result);
 }
 
 function multiply(num1, num2) {
   let result = num1 * num2;
-  return result;
+  document.querySelector("#output").value = result;
+  console.log(result);
 }
 
 function divide(num1, num2) {
   let result = num1 / num2;
-  return result;
+  document.querySelector("#output").value = result;
+  console.log(result);
 }
 
 // create function operate() that takes two numbers and an operator
-// function operate() calls one of the basic functions and applies to the numbers entere
+// operate() calls one of the basic functions and applies to the numbers entered
 
 function operate(num1, num2, operator) {
   if (operator == "+") {
@@ -33,17 +38,18 @@ function operate(num1, num2, operator) {
   } else if (operator == "/") {
     return divide(num1, num2);
   }
-  console.log(operate);
+  //   console.log(operate);
 }
 
 // console.log(operate(1, 2, "*"));
 
-// need to know current operator
+// need to determine current operator
 let enteredNumber = "";
 let currentOperator = null;
 
 let num1 = 0;
 let num2 = 0;
+let op = null;
 
 // resultsDiv displays numbers and operator as they are entered
 document.querySelector("#btnContainer").addEventListener("click", (event) => {
@@ -60,14 +66,19 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
       num1 = n;
     } else {
       num2 = n;
+      op = currentOperator;
     }
     enteredNumber = 0;
 
     currentOperator = target.innerHTML;
     document.querySelector("#output").value = currentOperator;
     console.log(currentOperator);
+
+    // clicking = calls operate() on the input values
+    const equalBtn = document.querySelector("#equalBtn");
+    equalBtn.addEventListener("click", operate(num1, num2, op));
   }
-  console.log({ num1, num2, enteredNumber });
+  console.log({ num1, num2, op, enteredNumber });
 });
 
 // // clicking number button stores value in variable num1
@@ -102,10 +113,6 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
 // });
 // const secondClicked = document.querySelector("btn");
 // secondClicked.addEventListener("click", save as num2);
-
-// clicking = calls operate() on the input values
-const equalBtn = document.querySelector("#equalBtn");
-equalBtn.addEventListener("click", operate);
 
 // // update to display solution after = is pressed
 // resultsDiv.textContent = "solution"
