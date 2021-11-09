@@ -1,6 +1,5 @@
 // create basic functions for adding, subtracting, multiplying, dividing
-// display solution in resultsDiv
-// round answers with long decimals to fit on the screen
+// round answers with long decimals
 
 function add(num1, num2) {
   let result = num1 + num2;
@@ -55,6 +54,7 @@ function doTheMath() {
 }
 
 // resultsDiv displays numbers and operator as they are entered
+// clicking = or any operator calls operate(), pushes result to n1
 document.querySelector("#btnContainer").addEventListener("click", (event) => {
   let target = event.target;
 
@@ -83,36 +83,29 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
     }
 
     console.log(currentOperator);
-
-    // clicking another operator also calls operate()
-    // displays solution, and puts solution into num1 to be used in next calculation
   }
   console.log({ n1, n2, currentOperator, enteredNumber });
 });
 
-// clicking = calls operate() on the entered values
-// const equalBtn = document.querySelector("#equalBtn");
-// equalBtn.addEventListener("click", operate(num1, num2, op));
-
 // add clear button that clears resultsDiv & all data
-// reload the page? or is there better solution?
 const clearBtn = document.querySelector("#clearBtn");
 clearBtn.addEventListener("click", () => {
   document.location.reload();
 });
 
-// // BONUS: add . to let users input decimals. Only allow one . per number (Disable if . is on display)
+// BONUS: add . to let users input decimals. Only allow one . per number (Disable if . is on display)
 // const periodBtn = document.querySelector("#periodBtn");
 // if (#output.value already contains .) {
 //     periodBtn.disabled = true;
 //     periodBtn.classList.add("disabled")
 // }
 
-// // BONUS: add a backspace button to delete the last character entered in display
-let screenView = document.querySelector("#output").value;
+// BONUS: add a backspace button to delete the last character entered in display
+// let screenView = document.querySelector("#output").value;
 
-const backspaceBtn = document.querySelector("#backspaceBtn");
-backspaceBtn.addEventListener("click", () => {
-  screenView = screenView.value.slice(0, -1);
-});
-// // BONUS: add keyboard support
+// const backspaceBtn = document.querySelector("#backspaceBtn");
+// backspaceBtn.addEventListener("click", () => {
+//   screenView = screenView.value.slice(0, -1);
+// });
+
+// BONUS: add keyboard support
