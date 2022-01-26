@@ -4,7 +4,7 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #333;
-  font-family: "Monoton", cursive;
+  font-family: "Monoton", sans-serif;
   margin: 20px 0 0 0;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 .btn {
-  font-family: "Monoton", cursive;
+  /* font-family: "Monoton", cursive; */
   font-size: 30px;
   padding: 10px 20px;
   box-shadow: 2px 2px #333;
@@ -105,7 +105,7 @@ footer {
   width: 100%;
   color: black;
   text-align: center;
-  position: bottom;
+  position: absolute;
   bottom: 0;
   height: 40px;
   margin-top: 100px;
