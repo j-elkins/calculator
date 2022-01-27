@@ -41,18 +41,25 @@
 // }
 
 // add decimal point functionality
+// starts as true; clicking periodBtn changes to false; clicking operator restores to true
+const periodBtn = document.querySelector("#periodBtn");
+
 let decimalAllowed = true;
 
-if (decimalAllowed === true) {
-  // decimal point button is functional. once pressed:
-  decimalAllowed = false;
-}
-
-// BONUS: add . to let users input decimals. Only allow one . per number (Disable if . is on display)
-const periodBtn = document.querySelector("#periodBtn");
 periodBtn.addEventListener("click", () => {
   decimalAllowed = false;
+  changePeriodButtonStatus();
 });
+
+function changePeriodButtonStatus() {
+  if (decimalAllowed === true) {
+    periodBtn.classList.remove("disabled");
+  } else if (decimalAllowed === false) {
+    periodBtn.classList.add("disabled");
+  }
+}
+
+// or - if num1 contains . already, don't allow another?
 // if (#output.value already contains .) {
 //     periodBtn.disabled = true;
 //     periodBtn.classList.add("disabled")
@@ -95,9 +102,7 @@ function doTheMath() {
 
 // resultsDiv displays numbers and operator as they are entered
 // clicking = or any operator calls operate(), pushes result to n1
-document.querySelector("#btnContainer").addEventListener("click", (event) => {
-  let target = event.target;
-
+function calculate(target) {
   if (target.matches(".btn.num")) {
     let value = target.innerHTML;
     enteredNumber += value;
@@ -105,16 +110,21 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
     console.log(enteredNumber);
   } else if (target.matches(".btn.op")) {
     if (enteredNumber !== "") {
-      let n = parseInt(enteredNumber);
+      let n = parseFloat(enteredNumber);
       if (currentOperator == null) {
         n1 = n;
-        // reset decimalAllowed to true
+
+        // reset decimal button
+        decimalAllowed = true;
+        changePeriodButtonStatus();
       } else {
         n2 = n;
 
         doTheMath();
 
-        // reset decimalAllowed to true
+        // reset decimal button
+        decimalAllowed = true;
+        changePeriodButtonStatus();
       }
     }
 
@@ -127,11 +137,25 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
 
     console.log(currentOperator);
   }
-  console.log({ n1, n2, currentOperator, enteredNumber });
-});
+}
+console.log({ n1, n2, currentOperator, enteredNumber });
 
-// also display characters as they're entered
-// document.querySelector("#entered").value = enteredNumber;
+// function to display stream of characters as they're entered
+function displayNumbersAsEntered(target) {
+  let displayValue = target.innerHTML;
+  document.querySelector("#entered").value = displayValue;
+
+  // this only displays most recent character clicked... how to show all?
+}
+
+// event listener for any button to be clicked
+document.querySelector("#btnContainer").addEventListener("click", (event) => {
+  let target = event.target;
+  calculate(target);
+  displayNumbersAsEntered(target);
+
+  console.log(event);
+});
 
 // add clear button that clears resultsDiv & all data
 const clearBtn = document.querySelector("#clearBtn");

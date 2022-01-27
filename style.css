@@ -87,10 +87,10 @@ body {
   padding: 0;
 }
 
-/* .disabled {
+.disabled {
   cursor: not-allowed;
   pointer-events: none;
-} */
+}
 
 .btn.equal {
   background-color: rgb(174, 245, 245);
