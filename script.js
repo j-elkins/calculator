@@ -59,12 +59,6 @@ function changePeriodButtonStatus() {
   }
 }
 
-// or - if num1 contains . already, don't allow another?
-// if (#output.value already contains .) {
-//     periodBtn.disabled = true;
-//     periodBtn.classList.add("disabled")
-// }
-
 // create function operate() that takes two numbers and applies an operator
 function operate(num1, num2, op) {
   let result;
@@ -102,7 +96,7 @@ function doTheMath() {
 
 // resultsDiv displays numbers and operator as they are entered
 // clicking = or any operator calls operate(), pushes result to n1
-function calculate(target) {
+function calculateUsingClickInput(target) {
   if (target.matches(".btn.num")) {
     let value = target.innerHTML;
     enteredNumber += value;
@@ -136,25 +130,88 @@ function calculate(target) {
     }
 
     console.log(currentOperator);
+    // console.log({ n1, n2, currentOperator, enteredNumber });
   }
 }
-console.log({ n1, n2, currentOperator, enteredNumber });
 
-// function to display stream of characters as they're entered
-function displayNumbersAsEntered(target) {
-  let displayValue = target.innerHTML;
-  document.querySelector("#entered").value = displayValue;
+// let keyPressedIsNumber
+// let keyPressedIsOperator
 
-  // this only displays most recent character clicked... how to show all?
+function calculateUsingKeyInput(keyPressed) {
+  // console.log(keyPressed);
+
+  if (
+    keyPressed === "1" ||
+    keyPressed == "2" ||
+    keyPressed == "3" ||
+    keyPressed == "4" ||
+    keyPressed == "5" ||
+    keyPressed == "6" ||
+    keyPressed == "7" ||
+    keyPressed == "8" ||
+    keyPressed == "9" ||
+    keyPressed == "0" ||
+    keyPressed == "."
+  ) {
+    let value = keyPressed;
+    enteredNumber += value;
+    document.querySelector("#output").value = enteredNumber;
+    console.log(enteredNumber);
+  } else if (
+    keyPressed === "+" ||
+    keyPressed == "-" ||
+    keyPressed == "*" ||
+    keyPressed == "/" ||
+    keyPressed == "="
+  ) {
+    if (enteredNumber !== "") {
+      let n = parseFloat(enteredNumber);
+      if (currentOperator == null) {
+        n1 = n;
+
+        // reset decimal button
+        decimalAllowed = true;
+        changePeriodButtonStatus();
+      } else {
+        n2 = n;
+
+        doTheMath();
+
+        // reset decimal button
+        decimalAllowed = true;
+        changePeriodButtonStatus();
+      }
+    }
+
+    enteredNumber = "";
+
+    currentOperator = keyPressed;
+    if (currentOperator === "=") {
+      currentOperator = null;
+    }
+
+    console.log(currentOperator);
+    // console.log({ n1, n2, currentOperator, enteredNumber });
+  }
 }
 
 // event listener for any button to be clicked
 document.querySelector("#btnContainer").addEventListener("click", (event) => {
   let target = event.target;
-  calculate(target);
-  displayNumbersAsEntered(target);
+  calculateUsingClickInput(target);
+});
 
-  console.log(event);
+// event listener for key to be pressed
+document.addEventListener("keydown", (event) => {
+  let key = event.key;
+  // console.log(event.key);
+
+  // if it's one of the num/op keys, do calculateUsingKeyInput(). any other key - ignore
+  const isValid = /^[0-9\.\,\+\-\*\=]$/i.test(key);
+
+  if (isValid == true) {
+    calculateUsingKeyInput(key);
+  }
 });
 
 // add clear button that clears resultsDiv & all data
@@ -164,11 +221,15 @@ clearBtn.addEventListener("click", () => {
 });
 
 // BONUS: add a backspace button to delete the last character entered in display
-// let screenView = document.querySelector("#output").value;
+function backspace() {
+  let value = document.querySelector("#output").value;
+  // document.querySelector("#output").value = value.substr(0, value.length - 1);
+  document.querySelector("#output").value = value.slice(0, -1);
+}
 
-// const backspaceBtn = document.querySelector("#backspaceBtn");
-// backspaceBtn.addEventListener("click", () => {
-//   screenView = screenView.value.slice(0, -1);
-// });
+const backspaceBtn = document.querySelector("#backspaceBtn");
+backspaceBtn.addEventListener("click", () => {
+  backspace();
+});
 
-// BONUS: add keyboard support
+// deletes last character from screen....but not from num1/num2 storage & calculation

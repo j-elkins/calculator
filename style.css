@@ -16,7 +16,7 @@ body {
   border: 3px black solid;
   background-color: rgb(118, 116, 116);
   border-radius: 20px;
-  border: 2px solid rgb(0, 255, 238);
+  border: 2px solid rgba(0, 255, 238, 0.68);
   margin: 50px;
 }
 
@@ -32,7 +32,6 @@ body {
   display: flex;
   justify-content: right;
   margin: 20px;
-  border: 1px solid red;
 }
 
 #output {

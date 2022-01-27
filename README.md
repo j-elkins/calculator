@@ -11,4 +11,10 @@ Summary of what I learned:
 - Accessing & storing data from button input
 - DOM Manipulation
 
-In total this project took me 9 hours to complete.
+In total this project took me 9 hours to complete. The bonus challenges took another 5+ hours to complete.
+
+BONUS challenges:
+
+- add decimal point
+- add backspace button to delete one character at a time
+- add keyboard functionality
