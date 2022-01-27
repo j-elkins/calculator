@@ -8,10 +8,16 @@ body {
   margin: 20px 0 0 0;
 }
 
+#header {
+  font-size: 50px;
+}
+
 #calculator {
   border: 3px black solid;
   background-color: rgb(118, 116, 116);
   border-radius: 20px;
+  border: 2px solid rgb(0, 255, 238);
+  margin: 50px;
 }
 
 #gridContainer {
@@ -21,21 +27,22 @@ body {
   padding: 0px 20px 20px 20px;
 }
 #resultsDiv {
-  height: 60px;
-  margin: 40px 0px;
+  height: 30px;
   padding: 5px;
   display: flex;
   justify-content: right;
   margin: 20px;
+  border: 1px solid red;
 }
 
 #output {
-  font-family: "Monoton", cursive;
+  font-family: "Monoton", sans-serif;
   font-size: 30px;
   border: 1px #333 solid;
   border-radius: 8px;
   text-align: right;
-  width: 100px;
+  width: 200px;
+  height: 60px;
   padding: 10px;
   box-shadow: 2px 2px #333;
 }
@@ -47,11 +54,12 @@ body {
   grid-template-rows: auto;
   gap: 5px;
   width: 300px;
+  margin-top: 40px;
 }
 
 .btn {
-  /* font-family: "Monoton", cursive; */
-  font-size: 30px;
+  font-family: "Monoton", sans-serif;
+  font-size: 40px;
   padding: 10px 20px;
   box-shadow: 2px 2px #333;
 }
@@ -100,7 +108,7 @@ body {
 
 /* FOOTER ---------------------------------- */
 footer {
-  font-size: 10px;
+  font-size: 14px;
   background-color: #666;
   width: 100%;
   color: black;
@@ -113,4 +121,11 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 10px;
+}
+
+/* MEDIA QUERIES --------------------------- */
+@media screen and (max-height: 860px) {
+  footer {
+    position: static;
+  }
 }
