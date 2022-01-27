@@ -72,10 +72,11 @@ function operate(num1, num2, op) {
     result = num1 / num2;
   }
 
-  return result.toFixed(4);
+  result = Math.round(result * 100000) / 100000;
+  return result;
 }
 
-// let result = num1 `${op}` num2; -- POSSIBLE TO SHORTEN EVEN MORE?
+// let result = num1 `${op}` num2; -- POSSIBLE TO SHORTEN THIS EVEN MORE?
 
 // set variables for entered numbers & operator
 let enteredNumber = "";
@@ -84,6 +85,7 @@ let currentOperator = null;
 let n1 = 0;
 let n2 = 0;
 
+// function calls operate() and displays solution
 function doTheMath() {
   const solution = operate(n1, n2, currentOperator);
   document.querySelector("#output").value = solution;
@@ -127,6 +129,9 @@ document.querySelector("#btnContainer").addEventListener("click", (event) => {
   }
   console.log({ n1, n2, currentOperator, enteredNumber });
 });
+
+// also display characters as they're entered
+// document.querySelector("#entered").value = enteredNumber;
 
 // add clear button that clears resultsDiv & all data
 const clearBtn = document.querySelector("#clearBtn");
