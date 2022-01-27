@@ -94,6 +94,20 @@ function doTheMath() {
   n1 = solution;
 }
 
+// add a backspace button to delete the last character entered in display
+function backspace() {
+  let value = document.querySelector("#output").value;
+  // document.querySelector("#output").value = value.substr(0, value.length - 1);
+  document.querySelector("#output").value = value.slice(0, -1);
+}
+
+const backspaceBtn = document.querySelector("#backspaceBtn");
+backspaceBtn.addEventListener("click", () => {
+  backspace();
+});
+
+// deletes last character from screen....but not from num1/num2 storage & calculation
+
 // resultsDiv displays numbers and operator as they are entered
 // clicking = or any operator calls operate(), pushes result to n1
 function calculateUsingClickInput(target) {
@@ -157,6 +171,9 @@ function calculateUsingKeyInput(keyPressed) {
     enteredNumber += value;
     document.querySelector("#output").value = enteredNumber;
     console.log(enteredNumber);
+  } else if (keyPressed === "Backspace") {
+    console.log("pressed");
+    backspace();
   } else if (
     keyPressed === "+" ||
     keyPressed == "-" ||
@@ -211,6 +228,8 @@ document.addEventListener("keydown", (event) => {
 
   if (isValid == true) {
     calculateUsingKeyInput(key);
+  } else if (key === "Backspace") {
+    calculateUsingKeyInput(key);
   }
 });
 
@@ -219,17 +238,3 @@ const clearBtn = document.querySelector("#clearBtn");
 clearBtn.addEventListener("click", () => {
   document.location.reload();
 });
-
-// BONUS: add a backspace button to delete the last character entered in display
-function backspace() {
-  let value = document.querySelector("#output").value;
-  // document.querySelector("#output").value = value.substr(0, value.length - 1);
-  document.querySelector("#output").value = value.slice(0, -1);
-}
-
-const backspaceBtn = document.querySelector("#backspaceBtn");
-backspaceBtn.addEventListener("click", () => {
-  backspace();
-});
-
-// deletes last character from screen....but not from num1/num2 storage & calculation
